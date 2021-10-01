@@ -1,0 +1,71 @@
+.container {
+    max-width: 800px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    background-color: rgb(201, 201, 201);
+    min-height: 500px;
+    padding: 25px;
+    border-radius: 25px;
+}
+.connect-block {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.workspace-block {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.info {
+    max-width: 450px;
+    width: 100%;
+    border: 1px solid;
+    border-radius: 25px;
+    box-shadow: whitesmoke;
+    padding: 7px 10px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: 13px;
+    background-color: whitesmoke;
+}
+
+.btn-block{
+    margin-top: 20px;
+}
+
+.data-contract{
+    text-align: start;
+    font-size: medium;
+    margin-left: 40px;
+}
+
+.data-contract div {
+    margin-top: 7px;
+}
+
+.data-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.data-container div {
+    max-width: 800px / 2;
+    width: 100%;
+}
+
+.data-container:last-child {
+    text-align: center;
+}
+
+#up-msg {
+    max-width: 150px;
+    width: 100%;
+    margin-left: 12px;
+}
+
+#metamsk-send-blc {
+    margin-top: 40px;
+}

@@ -1,28 +1,48 @@
 <div class="container">
-    <h2>Interaction to Smart Contract</h2>
-    <div>
-        <h3>Connect to Metamask</h3>
+    <h2 class="title pos-mgl20">Interaction to Smart Contract</h2>
+    <div *ngIf='!isConnected' class="connect-block">
+        <h3 class="title-m">Connect to Metamask</h3>
         <div>
             <input (click)="getAccount()" class="btn btn-s" type="button" id="con-btn" value="Connect" />
         </div>
     </div>
-    <div>
-        <h3>Workspace</h3>
+    <div class="workspace-block" *ngIf='isConnected'>
+        <h3 class="title-m">Workspace</h3>
         <div>
-            <div>
+            <div class="info">
                 Account: <span class="showAccount">{{account}}</span>
             </div>
-            <div>
+            <div class="info">
                 Balance: <span class="showBalance">{{read}}</span>
             </div>
         </div>
-        <div>
-            <div>
-                {{message}}
+        <div class="btn-block">
+            <div *ngIf="!isDeployed">
+                <input (click)="getContractAddr()" class="btn btn-s" id="deploy" type="button" value="Deploy" />
             </div>
-            <input (click)="readData()" class="btn btn-s" id="get-msg" type="button" value="Get Message" />
-            <input (click)="getContractAddr()" class="btn btn-s" id="deploy" type="button" value="Deploy" />
-            <input (click)="sendEth()" class="btn btn-s" id="sendTx" type="button" value="Send Eth" />
+            <div *ngIf="isDeployed" class="data-contract">
+                <div class="data-container">
+                    <div>
+                        Data saved in contract: {{message}}
+                        <div>
+                            <input (click)="readData()" class="btn btn-s" id="get-msg" type="button"
+                                value="Get Message" />
+                        </div>
+                    </div>
+                    <div>
+                        <input class="input-txt" type="text" name="text" id="text"
+                            placeholder="Write new message here...">
+                        <input (click)="updateData()" class="btn btn-s" id="up-msg" type="button"
+                            value="Update Message" />
+                    </div>
+                </div>
+                <div id="metamsk-send-blc">
+                    Send eth to: {{contractAddr}}
+                    <div>
+                        <input (click)="sendEth()" class="btn btn-s" id="sendTx" type="button" value="Send Eth" />
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
