@@ -1,37 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Metamask Tutorial</title>
-</head>
-
-<body>
-    <div class="container">
-        <h2>Interaction to Smart Contract</h2>
+<div class="container">
+    <h2>Interaction to Smart Contract</h2>
+    <div>
+        <h3>Connect to Metamask</h3>
         <div>
-            <h3>Connect to Metamask</h3>
-            <div>
-                <input class="btn btn-s" type="button" id="con-btn" value="Connect" />
-            </div>
-        </div>
-        <div>
-            <h3>Workspace</h3>
-            <div>
-                <div>
-                    Account: <span class="showAccount" id="showAccount"></span>
-                </div>
-                <input class="btn btn-s" id="sendEth-btn" type="button" value="Send Eth" />
-                <div>
-                    Balance: <span class="showBalance" id="showBalance"></span>
-                </div>
-            </div>
+            <input (click)="getAccount()" class="btn btn-s" type="button" id="con-btn" value="Connect" />
         </div>
     </div>
-    <script src="./scripts/connect.js"></script>
-</body>
-
-</html>
+    <div>
+        <h3>Workspace</h3>
+        <div>
+            <div>
+                Account: <span class="showAccount">{{account}}</span>
+            </div>
+            <div>
+                Balance: <span class="showBalance">{{read}}</span>
+            </div>
+        </div>
+        <div>
+            <div>
+                {{message}}
+            </div>
+            <input (click)="getData()" class="btn btn-s" id="get-msg" type="button" value="Get Message" />
+        </div>
+    </div>
+</div>
