@@ -33,8 +33,8 @@ export class AppComponent implements OnInit {
     this.read = '';
     this.contractAddr = '0xa5D02E2B56F319Ea77d8aD4Ba73724C43fd2de7A';
     this.message = '';
-    this.isConnected = true;
-    this.isDeployed = true;
+    this.isConnected = false;
+    this.isDeployed = false;
   }
 
   async ngOnInit() {
@@ -74,13 +74,16 @@ export class AppComponent implements OnInit {
     this.message = await helloWorldContract.functions.message();
   }
 
-  async updateData() {
+  async updateData(newMessage: string) {
+    let hash = '';
     const helloWorldContract = this.createInstance(this.contractAddr);
-    this.message = await helloWorldContract.functions.message();
+    await helloWorldContract.functions.update(newMessage).then((txhash) => hash = txhash.hash);
+    this._provider.once(hash, (tx: any) => {
+      alert('Transaction confirmed!');
+    })
   }
 
   createInstance(contractAddr: string) {
-    console.log(new ethers.Contract(contractAddr, this._contract.abi, this._signer));
     return new ethers.Contract(contractAddr, this._contract.abi, this._signer);
   }
   getContractFromFactory() {
@@ -88,7 +91,6 @@ export class AppComponent implements OnInit {
   }
   async getContractAddr() {
     const HelloWorld = await this.getContractFromFactory().deploy('Hello World!');
-    console.log(HelloWorld);
     this.contractAddr = HelloWorld.address;
     await HelloWorld.deployTransaction.wait();
     this.isDeployed = true;

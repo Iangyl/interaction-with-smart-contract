@@ -30,9 +30,9 @@
                         </div>
                     </div>
                     <div>
-                        <input class="input-txt" type="text" name="text" id="text"
+                        <input #inputText class="input-txt" type="text" name="text" id="text"
                             placeholder="Write new message here...">
-                        <input (click)="updateData()" class="btn btn-s" id="up-msg" type="button"
+                        <input (click)="updateData(inputText.value)" class="btn btn-s" id="up-msg" type="button"
                             value="Update Message" />
                     </div>
                 </div>
