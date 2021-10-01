@@ -45,14 +45,18 @@ export class AppComponent implements OnInit {
     //showBalance
     this.read = (parseInt(this.balance) / 10 ** 18).toFixed(5);
   }
+  sendEth() {
+    ethereum.request({
+      method: 'eth_sendTransaction',
+      params: [
+        {
+          from: this.account,
+          to: this.contractAddr,
+        }
 
-  createInstance() {
-    return new ethers.Contract(this.contract, this.contractAddr);
+      ],
+    })
+    .then((txHash: any) => console.log(txHash))
+    .catch((error: any) => console.log(error.message))
   }
-
-  async getData() {
-    const helloWorldContract = this.createInstance();
-    this.message = await helloWorldContract.methods.message().call();
-  }
-
 }
